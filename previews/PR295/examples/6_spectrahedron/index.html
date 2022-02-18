@@ -65,8 +65,8 @@ MOMENTUM: nothing GRADIENTTYPE: Nothing
 -------------------------------------------------------------------------------------------------
   Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec
 -------------------------------------------------------------------------------------------------
-     I             0   1.018580e+00   1.014119e+00   4.461191e-03   0.000000e+00            NaN
-  Last            25   1.014314e+00   1.014314e+00   8.607921e-09   1.720645e+00   1.511061e+01
+     I             0   1.018626e+00   1.014119e+00   4.507493e-03   0.000000e+00            NaN
+  Last            24   1.014314e+00   1.014314e+00   9.179289e-09   1.856234e+00   1.346813e+01
 -------------------------------------------------------------------------------------------------
 
 
@@ -78,16 +78,16 @@ GRADIENTTYPE: Nothing CACHESIZE Inf GREEDYCACHE: false
 ----------------------------------------------------------------------------------------------------------------
   Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec     Cache Size
 ----------------------------------------------------------------------------------------------------------------
-     I             0   1.018580e+00   1.014119e+00   4.461191e-03   0.000000e+00            NaN              1
-    LD             1   1.014317e+00   1.014314e+00   3.677809e-06   1.649551e-01   6.062254e+00              2
-    LD             2   1.014315e+00   1.014314e+00   1.038208e-06   2.382238e-01   8.395467e+00              3
-    LD             3   1.014315e+00   1.014314e+00   5.096121e-07   3.027304e-01   9.909807e+00              4
-    LD             5   1.014314e+00   1.014314e+00   2.021735e-07   3.887531e-01   1.286163e+01              5
-    LD             8   1.014314e+00   1.014314e+00   8.405042e-08   5.056564e-01   1.582102e+01              6
-    LD            12   1.014314e+00   1.014314e+00   3.876751e-08   6.532694e-01   1.836914e+01              7
-    LD            18   1.014314e+00   1.014314e+00   1.767924e-08   8.440667e-01   2.132533e+01              8
-    LD            26   1.014314e+00   1.014314e+00   8.612269e-09   1.071569e+00   2.426349e+01              9
-  Last            26   1.014314e+00   1.014314e+00   7.997069e-09   1.194092e+00   2.261132e+01             10
+     I             0   1.018626e+00   1.014119e+00   4.507493e-03   0.000000e+00            NaN              1
+    LD             1   1.014317e+00   1.014314e+00   3.626101e-06   1.521934e-01   6.570586e+00              2
+    LD             2   1.014315e+00   1.014314e+00   1.025281e-06   2.258274e-01   8.856319e+00              3
+    LD             3   1.014315e+00   1.014314e+00   5.032260e-07   3.045587e-01   9.850317e+00              4
+    LD             5   1.014314e+00   1.014314e+00   1.996281e-07   4.111962e-01   1.215964e+01              5
+    LD             8   1.014314e+00   1.014314e+00   8.299048e-08   5.497432e-01   1.455225e+01              6
+    LD            12   1.014314e+00   1.014314e+00   3.827839e-08   7.221713e-01   1.661656e+01              7
+    LD            18   1.014314e+00   1.014314e+00   1.745615e-08   9.576059e-01   1.879688e+01              8
+    LD            26   1.014314e+00   1.014314e+00   8.503582e-09   1.252317e+00   2.076152e+01              9
+  Last            26   1.014314e+00   1.014314e+00   7.896146e-09   1.393946e+00   1.936948e+01             10
 ----------------------------------------------------------------------------------------------------------------</code></pre><h2 id="Plotting-the-resulting-trajectories"><a class="docs-heading-anchor" href="#Plotting-the-resulting-trajectories">Plotting the resulting trajectories</a><a id="Plotting-the-resulting-trajectories-1"></a><a class="docs-heading-anchor-permalink" href="#Plotting-the-resulting-trajectories" title="Permalink"></a></h2><pre><code class="language- hljs">data = [trajectory, trajectory_lazy]
 label = [&quot;FW&quot;, &quot;LCG&quot;]
-plot_trajectories(data, label, xscalelog=true)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../5_blended_cg/">« Blended Conditional Gradients</a><a class="docs-footer-nextpage" href="../7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.12 on <span class="colophon-date" title="Tuesday 15 February 2022 17:42">Tuesday 15 February 2022</span>. Using Julia version 1.6.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+plot_trajectories(data, label, xscalelog=true)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../5_blended_cg/">« Blended Conditional Gradients</a><a class="docs-footer-nextpage" href="../7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.12 on <span class="colophon-date" title="Friday 18 February 2022 15:36">Friday 18 February 2022</span>. Using Julia version 1.6.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
