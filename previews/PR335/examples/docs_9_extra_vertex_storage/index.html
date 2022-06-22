@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Extra-lazification · FrankWolfe.jl</title><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.044/juliamono.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">FrankWolfe.jl</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><a class="tocitem" href="../../basics/">How does it work?</a></li><li><a class="tocitem" href="../../advanced/">Advanced features</a></li><li><input class="collapse-toggle" id="menuitem-4" type="checkbox" checked/><label class="tocitem" for="menuitem-4"><span class="docs-label">Examples</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../docs_0_fw_visualized/">Visualization of Frank-Wolfe running on a 2-dimensional polytope</a></li><li><a class="tocitem" href="../docs_1_mathopt_lmo/">Comparison with MathOptInterface on a Probability Simplex</a></li><li><a class="tocitem" href="../docs_2_polynomial_regression/">Polynomial Regression</a></li><li><a class="tocitem" href="../docs_3_matrix_completion/">Matrix Completion</a></li><li><a class="tocitem" href="../docs_4_rational_opt/">Exact Optimization with Rational Arithmetic</a></li><li><a class="tocitem" href="../docs_5_blended_cg/">Blended Conditional Gradients</a></li><li><a class="tocitem" href="../docs_6_spectrahedron/">Spectrahedron</a></li><li><a class="tocitem" href="../docs_7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls</a></li><li><a class="tocitem" href="../docs_8_callback_and_tracking/">Tracking, counters and custom callbacks for Frank Wolfe</a></li><li class="is-active"><a class="tocitem" href>Extra-lazification</a><ul class="internal"><li><a class="tocitem" href="#Warm-starting-on-a-similar-problem"><span>Warm-starting on a similar problem</span></a></li></ul></li></ul></li><li><input class="collapse-toggle" id="menuitem-5" type="checkbox"/><label class="tocitem" for="menuitem-5"><span class="docs-label">API reference</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../../reference/1_lmo/">Linear Minimization Oracles</a></li><li><a class="tocitem" href="../../reference/2_algorithms/">Algorithms</a></li><li><a class="tocitem" href="../../reference/3_backend/">Utilities and data structures</a></li><li><a class="tocitem" href="../../reference/4_linesearch/">Line search and step size settings</a></li></ul></li><li><a class="tocitem" href="../../contributing/">Contributing</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Extra-lazification</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Extra-lazification</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/ZIB-IOL/FrankWolfe.jl/blob/master/examples/docs_9_extra_vertex_storage.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Extra-lazification"><a class="docs-heading-anchor" href="#Extra-lazification">Extra-lazification</a><a id="Extra-lazification-1"></a><a class="docs-heading-anchor-permalink" href="#Extra-lazification" title="Permalink"></a></h1><pre><code class="language- hljs">using FrankWolfe
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Extra-lazification · FrankWolfe.jl</title><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.044/juliamono.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">FrankWolfe.jl</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><a class="tocitem" href="../../basics/">How does it work?</a></li><li><a class="tocitem" href="../../advanced/">Advanced features</a></li><li><input class="collapse-toggle" id="menuitem-4" type="checkbox" checked/><label class="tocitem" for="menuitem-4"><span class="docs-label">Examples</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../docs_0_fw_visualized/">Visualization of Frank-Wolfe running on a 2-dimensional polytope</a></li><li><a class="tocitem" href="../docs_1_mathopt_lmo/">Comparison with MathOptInterface on a Probability Simplex</a></li><li><a class="tocitem" href="../docs_2_polynomial_regression/">Polynomial Regression</a></li><li><a class="tocitem" href="../docs_3_matrix_completion/">Matrix Completion</a></li><li><a class="tocitem" href="../docs_4_rational_opt/">Exact Optimization with Rational Arithmetic</a></li><li><a class="tocitem" href="../docs_5_blended_cg/">Blended Conditional Gradients</a></li><li><a class="tocitem" href="../docs_6_spectrahedron/">Spectrahedron</a></li><li><a class="tocitem" href="../docs_7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls</a></li><li><a class="tocitem" href="../docs_8_callback_and_tracking/">Tracking, counters and custom callbacks for Frank Wolfe</a></li><li class="is-active"><a class="tocitem" href>Extra-lazification</a><ul class="internal"><li><a class="tocitem" href="#Warm-starting-on-a-similar-problem"><span>Warm-starting on a similar problem</span></a></li></ul></li></ul></li><li><input class="collapse-toggle" id="menuitem-5" type="checkbox"/><label class="tocitem" for="menuitem-5"><span class="docs-label">API reference</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../../reference/1_lmo/">Linear Minimization Oracles</a></li><li><a class="tocitem" href="../../reference/2_algorithms/">Algorithms</a></li><li><a class="tocitem" href="../../reference/3_backend/">Utilities and data structures</a></li><li><a class="tocitem" href="../../reference/4_linesearch/">Line search and step size settings</a></li></ul></li><li><a class="tocitem" href="../../contributing/">Contributing</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Extra-lazification</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Extra-lazification</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/ZIB-IOL/FrankWolfe.jl/blob/master/examples/docs_9_extra_vertex_storage.jl" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Extra-lazification"><a class="docs-heading-anchor" href="#Extra-lazification">Extra-lazification</a><a id="Extra-lazification-1"></a><a class="docs-heading-anchor-permalink" href="#Extra-lazification" title="Permalink"></a></h1><pre><code class="language-julia hljs">using FrankWolfe
 using Test
 using LinearAlgebra
 using FrankWolfe: ActiveSet
 
+const n = 100
 const center0 = 5.0 .+ 3 * rand(n)
 f(x) = 0.5 * norm(x .- center0)^2
 function grad!(storage, x)
@@ -13,7 +14,6 @@ end
 lmo = FrankWolfe.UnitSimplexOracle(4.3)
 tlmo = FrankWolfe.TrackingLMO(lmo)
 
-n = 100
 x0 = FrankWolfe.compute_extreme_point(lmo, randn(n))
 
 results = FrankWolfe.blended_pairwise_conditional_gradient(
@@ -27,8 +27,31 @@ results = FrankWolfe.blended_pairwise_conditional_gradient(
     epsilon=1e-5,
 )
 
-active_set = results[end];
-nothing #hide</code></pre><p>The counter for the number of LMO calls in the first run.</p><pre><code class="language- hljs">tlmo.counter</code></pre><h2 id="Warm-starting-on-a-similar-problem"><a class="docs-heading-anchor" href="#Warm-starting-on-a-similar-problem">Warm-starting on a similar problem</a><a id="Warm-starting-on-a-similar-problem-1"></a><a class="docs-heading-anchor-permalink" href="#Warm-starting-on-a-similar-problem" title="Permalink"></a></h2><p>We change the point projected to the polytope at every iteration to a different one and reuse the active set of the previous iteration.</p><pre><code class="language- hljs">for iter in 1:10
+active_set = results[end];</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">
+Blended Pairwise Conditional Gradient Algorithm.
+MEMORY_MODE: FrankWolfe.InplaceEmphasis() STEPSIZE: Adaptive EPSILON: 1.0e-5 MAXITERATION: 4000 TYPE: Float64
+GRADIENTTYPE: Nothing LAZY: true lazy_tolerance: 2.0
+[ Info: In memory_mode memory iterates are written back into x0!
+
+----------------------------------------------------------------------------------------------------------------
+  Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec     #ActiveSet
+----------------------------------------------------------------------------------------------------------------
+     I             1   2.119458e+03   2.098970e+03   2.048800e+01   0.000000e+00            Inf              2
+    LD             3   2.117360e+03   2.109308e+03   8.052307e+00   5.524848e-02   5.430014e+01              3
+    LD             8   2.115053e+03   2.111212e+03   3.841888e+00   5.542598e-02   1.443366e+02              5
+    LD            14   2.114242e+03   2.112608e+03   1.633740e+00   5.558748e-02   2.518553e+02              9
+    LD            22   2.114026e+03   2.113705e+03   3.213494e-01   5.575138e-02   3.946091e+02             13
+    LD            30   2.114013e+03   2.113962e+03   5.132361e-02   5.590808e-02   5.365951e+02             13
+    LD            38   2.114013e+03   2.114004e+03   9.193385e-03   5.607028e-02   6.777209e+02             13
+    LD            47   2.114013e+03   2.114011e+03   1.405082e-03   5.623197e-02   8.358234e+02             13
+    LD            56   2.114013e+03   2.114013e+03   2.996493e-04   5.638967e-02   9.930896e+02             13
+    LD            63   2.114013e+03   2.114013e+03   4.428244e-05   5.654327e-02   1.114191e+03             13
+    LD            73   2.114013e+03   2.114013e+03   5.738928e-06   5.670277e-02   1.287415e+03             13
+  Last            73   2.114013e+03   2.114013e+03   5.738928e-06   5.684957e-02   1.284091e+03             13
+----------------------------------------------------------------------------------------------------------------
+
+    PP            73   2.114013e+03   2.114013e+03   5.738928e-06   5.701497e-02   1.280365e+03             13
+----------------------------------------------------------------------------------------------------------------</code></pre><p>The counter for the number of LMO calls in the first run.</p><pre><code class="language-julia hljs">tlmo.counter</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">25</code></pre><h2 id="Warm-starting-on-a-similar-problem"><a class="docs-heading-anchor" href="#Warm-starting-on-a-similar-problem">Warm-starting on a similar problem</a><a id="Warm-starting-on-a-similar-problem-1"></a><a class="docs-heading-anchor-permalink" href="#Warm-starting-on-a-similar-problem" title="Permalink"></a></h2><p>We change the point projected to the polytope at every iteration to a different one and reuse the active set of the previous iteration.</p><pre><code class="language-julia hljs">for iter in 1:10
     center = 5.0 .+ 3 * rand(n)
     f_i(x) = 0.5 * norm(x .- center)^2
     @info &quot;Distance of solution to new center: $(f_i(active_set.x))&quot;
@@ -46,7 +69,26 @@ nothing #hide</code></pre><p>The counter for the number of LMO calls in the firs
         epsilon=1e-5,
     )
     @info &quot;Number of LMO calls in iter $iter: $(tlmo.counter)&quot;
-end</code></pre><p>Adding a vertex storage</p><pre><code class="language- hljs">vertex_storage = Vector{typeof(x0)}()
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">[ Info: Distance of solution to new center: 2062.3489109048155
+[ Info: Number of LMO calls in iter 1: 25
+[ Info: Distance of solution to new center: 2218.0792231522196
+[ Info: Number of LMO calls in iter 2: 30
+[ Info: Distance of solution to new center: 2103.02609043377
+[ Info: Number of LMO calls in iter 3: 27
+[ Info: Distance of solution to new center: 2105.013527677996
+[ Info: Number of LMO calls in iter 4: 26
+[ Info: Distance of solution to new center: 2074.81335034714
+[ Info: Number of LMO calls in iter 5: 25
+[ Info: Distance of solution to new center: 2116.8460088769325
+[ Info: Number of LMO calls in iter 6: 28
+[ Info: Distance of solution to new center: 2106.271840326501
+[ Info: Number of LMO calls in iter 7: 25
+[ Info: Distance of solution to new center: 2207.1052961292435
+[ Info: Number of LMO calls in iter 8: 30
+[ Info: Distance of solution to new center: 2097.498818392114
+[ Info: Number of LMO calls in iter 9: 24
+[ Info: Distance of solution to new center: 2137.802424315744
+[ Info: Number of LMO calls in iter 10: 28</code></pre><p>Adding a vertex storage</p><pre><code class="language-julia hljs">vertex_storage = FrankWolfe.DeletedVertexStorage(typeof(x0)[], 5)
 tlmo.counter = 0
 
 results = FrankWolfe.blended_pairwise_conditional_gradient(
@@ -68,7 +110,6 @@ tlmo.counter
 for iter in 1:10
     center = 5.0 .+ 3 * rand(n)
     f_i(x) = 0.5 * norm(x .- center)^2
-    @info &quot;Distance of solution to new center: $(f_i(active_set.x))&quot;
     function grad_i!(storage, x)
         return storage .= x .- center
     end
@@ -84,7 +125,53 @@ for iter in 1:10
         add_dropped_vertices=true,
         use_extra_vertex_storage=true,
         extra_vertex_storage=vertex_storage,
-        verbose=true,
+        verbose=false,
     )
     @info &quot;Number of LMO calls in iter $iter: $(tlmo.counter)&quot;
-end</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_8_callback_and_tracking/">« Tracking, counters and custom callbacks for Frank Wolfe</a><a class="docs-footer-nextpage" href="../../reference/1_lmo/">Linear Minimization Oracles »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Wednesday 22 June 2022 20:27">Wednesday 22 June 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+    @info &quot;Vertex storage size: $(length(vertex_storage.storage))&quot;
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">
+Blended Pairwise Conditional Gradient Algorithm.
+MEMORY_MODE: FrankWolfe.InplaceEmphasis() STEPSIZE: Adaptive EPSILON: 1.0e-5 MAXITERATION: 4000 TYPE: Float64
+GRADIENTTYPE: Nothing LAZY: true lazy_tolerance: 2.0
+[ Info: In memory_mode memory iterates are written back into x0!
+
+----------------------------------------------------------------------------------------------------------------
+  Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec     #ActiveSet
+----------------------------------------------------------------------------------------------------------------
+     I             1   2.119458e+03   2.098970e+03   2.048800e+01   0.000000e+00            Inf              2
+    LD             3   2.117360e+03   2.109308e+03   8.052307e+00   8.090218e-03   3.708182e+02              3
+    LD             8   2.115053e+03   2.111212e+03   3.841888e+00   8.285918e-03   9.654935e+02              5
+    LD            14   2.114242e+03   2.112608e+03   1.633740e+00   8.467019e-03   1.653474e+03              9
+    LD            22   2.114026e+03   2.113705e+03   3.213494e-01   8.654419e-03   2.542054e+03             13
+    LD            30   2.114013e+03   2.113962e+03   5.132361e-02   8.836520e-03   3.395002e+03             13
+    LD            38   2.114013e+03   2.114004e+03   9.193385e-03   9.019920e-03   4.212898e+03             13
+    LD            47   2.114013e+03   2.114011e+03   1.405082e-03   9.200421e-03   5.108462e+03             13
+    LD            56   2.114013e+03   2.114013e+03   2.996493e-04   9.380021e-03   5.970136e+03             13
+    LD            63   2.114013e+03   2.114013e+03   4.428244e-05   9.558421e-03   6.591047e+03             13
+    LD            73   2.114013e+03   2.114013e+03   5.738928e-06   9.741722e-03   7.493542e+03             13
+  Last            73   2.114013e+03   2.114013e+03   5.738928e-06   9.891922e-03   7.379759e+03             13
+----------------------------------------------------------------------------------------------------------------
+
+    PP            73   2.114013e+03   2.114013e+03   5.738928e-06   1.006332e-02   7.254066e+03             13
+----------------------------------------------------------------------------------------------------------------
+
+[ Info: Number of LMO calls in iter 1: 28
+[ Info: Vertex storage size: 12
+[ Info: Number of LMO calls in iter 2: 28
+[ Info: Vertex storage size: 28
+[ Info: Number of LMO calls in iter 3: 22
+[ Info: Vertex storage size: 42
+[ Info: Number of LMO calls in iter 4: 19
+[ Info: Vertex storage size: 56
+[ Info: Number of LMO calls in iter 5: 15
+[ Info: Vertex storage size: 63
+[ Info: Number of LMO calls in iter 6: 15
+[ Info: Vertex storage size: 72
+[ Info: Number of LMO calls in iter 7: 13
+[ Info: Vertex storage size: 77
+[ Info: Number of LMO calls in iter 8: 11
+[ Info: Vertex storage size: 82
+[ Info: Number of LMO calls in iter 9: 10
+[ Info: Vertex storage size: 83
+[ Info: Number of LMO calls in iter 10: 13
+[ Info: Vertex storage size: 83</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_8_callback_and_tracking/">« Tracking, counters and custom callbacks for Frank Wolfe</a><a class="docs-footer-nextpage" href="../../reference/1_lmo/">Linear Minimization Oracles »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Wednesday 22 June 2022 21:34">Wednesday 22 June 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
