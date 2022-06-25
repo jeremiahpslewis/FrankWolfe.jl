@@ -30,7 +30,7 @@ function grad!(storage, X)
 end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">grad! (generic function with 1 method)</code></pre><p>Note that the <code>ensure_symmetry = false</code> argument to <code>SpectraplexLMO</code>. It skips an additional step making the used direction symmetric. It is not necessary when the gradient is a <code>LinearAlgebra.Symmetric</code> (or more rarely a <code>LinearAlgebra.Diagonal</code> or <code>LinearAlgebra.UniformScaling</code>).</p><pre><code class="language-julia hljs">const lmo = FrankWolfe.SpectraplexLMO(1.0, n, false)
 const x0 = FrankWolfe.compute_extreme_point(lmo, spzeros(n, n))
 
-target_tolerance = 1e-8;</code></pre><h2 id="Running-standard-and-lazified-Frank-Wolfe"><a class="docs-heading-anchor" href="#Running-standard-and-lazified-Frank-Wolfe">Running standard and lazified Frank-Wolfe</a><a id="Running-standard-and-lazified-Frank-Wolfe-1"></a><a class="docs-heading-anchor-permalink" href="#Running-standard-and-lazified-Frank-Wolfe" title="Permalink"></a></h2><pre><code class="language-julia hljs">Xfinal, Vfinal, primal, dual_gap, trajectory = FrankWolfe.frank_wolfe(
+target_tolerance = 1e-8;</code></pre><h2 id="Running-standard-and-lazified-Frank-Wolfe"><a class="docs-heading-anchor" href="#Running-standard-and-lazified-Frank-Wolfe">Running standard and lazified Frank-Wolfe</a><a id="Running-standard-and-lazified-Frank-Wolfe-1"></a><a class="docs-heading-anchor-permalink" href="#Running-standard-and-lazified-Frank-Wolfe" title="Permalink"></a></h2><pre><code class="language- hljs">Xfinal, Vfinal, primal, dual_gap, trajectory = FrankWolfe.frank_wolfe(
     f,
     grad!,
     lmo,
@@ -56,38 +56,7 @@ Xfinal, Vfinal, primal, dual_gap, trajectory_lazy = FrankWolfe.lazified_conditio
     verbose=true,
     trajectory=true,
     epsilon=target_tolerance,
-);</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">
-Vanilla Frank-Wolfe Algorithm.
-MEMORY_MODE: FrankWolfe.InplaceEmphasis() STEPSIZE: MonotonousStepSize EPSILON: 1.0e-8 MAXITERATION: 5000 TYPE: Float64
-MOMENTUM: nothing GRADIENTTYPE: Nothing
-[ Info: In memory_mode memory iterates are written back into x0!
-
--------------------------------------------------------------------------------------------------
-  Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec
--------------------------------------------------------------------------------------------------
-     I             1   1.018597e+00   1.014119e+00   4.477824e-03   0.000000e+00            Inf
-  Last            25   1.014314e+00   1.014314e+00   9.179324e-09   1.788400e+00   1.397898e+01
--------------------------------------------------------------------------------------------------
-
-
-Lazified Conditional Gradient (Frank-Wolfe + Lazification).
-MEMORY_MODE: FrankWolfe.InplaceEmphasis() STEPSIZE: MonotonousStepSize EPSILON: 1.0e-8 MAXITERATION: 5000 lazy_tolerance: 2.0 TYPE: Float64
-GRADIENTTYPE: Nothing CACHESIZE Inf GREEDYCACHE: false
-[ Info: In memory_mode memory iterates are written back into x0!
-
-----------------------------------------------------------------------------------------------------------------
-  Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec     Cache Size
-----------------------------------------------------------------------------------------------------------------
-     I             1   1.018597e+00   1.014119e+00   4.477824e-03   0.000000e+00            Inf              1
-    LD             2   1.014317e+00   1.014314e+00   3.630596e-06   9.405714e-01   2.126367e+00              2
-    LD             3   1.014315e+00   1.014314e+00   1.025225e-06   1.004818e+00   2.985616e+00              3
-    LD             4   1.014315e+00   1.014314e+00   5.032060e-07   1.070961e+00   3.734965e+00              4
-    LD             6   1.014314e+00   1.014314e+00   1.996252e-07   1.156852e+00   5.186489e+00              5
-    LD             9   1.014314e+00   1.014314e+00   8.299030e-08   1.264612e+00   7.116809e+00              6
-    LD            13   1.014314e+00   1.014314e+00   3.827847e-08   1.396643e+00   9.308031e+00              7
-    LD            19   1.014314e+00   1.014314e+00   1.745621e-08   1.575589e+00   1.205898e+01              8
-    LD            27   1.014314e+00   1.014314e+00   8.503621e-09   1.807291e+00   1.493949e+01              9
-  Last            27   1.014314e+00   1.014314e+00   7.896182e-09   1.936812e+00   1.394043e+01             10
-----------------------------------------------------------------------------------------------------------------</code></pre><h2 id="Plotting-the-resulting-trajectories"><a class="docs-heading-anchor" href="#Plotting-the-resulting-trajectories">Plotting the resulting trajectories</a><a id="Plotting-the-resulting-trajectories-1"></a><a class="docs-heading-anchor-permalink" href="#Plotting-the-resulting-trajectories" title="Permalink"></a></h2><pre><code class="language- hljs">data = [trajectory, trajectory_lazy]
+);
+nothing #hide</code></pre><h2 id="Plotting-the-resulting-trajectories"><a class="docs-heading-anchor" href="#Plotting-the-resulting-trajectories">Plotting the resulting trajectories</a><a id="Plotting-the-resulting-trajectories-1"></a><a class="docs-heading-anchor-permalink" href="#Plotting-the-resulting-trajectories" title="Permalink"></a></h2><pre><code class="language- hljs">data = [trajectory, trajectory_lazy]
 label = [&quot;FW&quot;, &quot;LCG&quot;]
-plot_trajectories(data, label, xscalelog=true)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_5_blended_cg/">« Blended Conditional Gradients</a><a class="docs-footer-nextpage" href="../docs_7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Wednesday 22 June 2022 15:20">Wednesday 22 June 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+plot_trajectories(data, label, xscalelog=true)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_5_blended_cg/">« Blended Conditional Gradients</a><a class="docs-footer-nextpage" href="../docs_7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Saturday 25 June 2022 12:38">Saturday 25 June 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
