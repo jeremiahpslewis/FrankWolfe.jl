@@ -36,20 +36,20 @@ GRADIENTTYPE: Nothing LAZY: true lazy_tolerance: 2.0
   Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec     #ActiveSet
 ----------------------------------------------------------------------------------------------------------------
      I             1   2.119458e+03   2.098970e+03   2.048800e+01   0.000000e+00            Inf              2
-    LD             3   2.117360e+03   2.109308e+03   8.052307e+00   6.249272e-02   4.800559e+01              3
-    LD             8   2.115053e+03   2.111212e+03   3.841888e+00   6.267302e-02   1.276466e+02              5
-    LD            14   2.114242e+03   2.112608e+03   1.633740e+00   6.285432e-02   2.227373e+02              9
-    LD            22   2.114026e+03   2.113705e+03   3.213494e-01   6.306082e-02   3.488695e+02             13
-    LD            30   2.114013e+03   2.113962e+03   5.132361e-02   6.324052e-02   4.743794e+02             13
-    LD            38   2.114013e+03   2.114004e+03   9.193385e-03   6.342122e-02   5.991685e+02             13
-    LD            47   2.114013e+03   2.114011e+03   1.405082e-03   6.360452e-02   7.389412e+02             13
-    LD            56   2.114013e+03   2.114013e+03   2.996493e-04   6.378362e-02   8.779683e+02             13
-    LD            63   2.114013e+03   2.114013e+03   4.428244e-05   6.395372e-02   9.850873e+02             13
-    LD            73   2.114013e+03   2.114013e+03   5.738928e-06   6.414262e-02   1.138089e+03             13
-  Last            73   2.114013e+03   2.114013e+03   5.738928e-06   6.429882e-02   1.135324e+03             13
+    LD             3   2.117360e+03   2.109308e+03   8.052307e+00   6.568538e-02   4.567226e+01              3
+    LD             8   2.115053e+03   2.111212e+03   3.841888e+00   6.587519e-02   1.214418e+02              5
+    LD            14   2.114242e+03   2.112608e+03   1.633740e+00   6.606319e-02   2.119183e+02              9
+    LD            22   2.114026e+03   2.113705e+03   3.213494e-01   6.624700e-02   3.320905e+02             13
+    LD            30   2.114013e+03   2.113962e+03   5.132361e-02   6.642540e-02   4.516345e+02             13
+    LD            38   2.114013e+03   2.114004e+03   9.193385e-03   6.660420e-02   5.705346e+02             13
+    LD            47   2.114013e+03   2.114011e+03   1.405082e-03   6.678571e-02   7.037434e+02             13
+    LD            56   2.114013e+03   2.114013e+03   2.996493e-04   6.696181e-02   8.362976e+02             13
+    LD            63   2.114013e+03   2.114013e+03   4.428244e-05   6.713301e-02   9.384355e+02             13
+    LD            73   2.114013e+03   2.114013e+03   5.738928e-06   6.731512e-02   1.084452e+03             13
+  Last            73   2.114013e+03   2.114013e+03   5.738928e-06   6.746612e-02   1.082025e+03             13
 ----------------------------------------------------------------------------------------------------------------
 
-    PP            73   2.114013e+03   2.114013e+03   5.738928e-06   6.447492e-02   1.132223e+03             13
+    PP            73   2.114013e+03   2.114013e+03   5.738928e-06   6.766502e-02   1.078844e+03             13
 ----------------------------------------------------------------------------------------------------------------</code></pre><p>The counter for the number of LMO calls in the first run.</p><pre><code class="language-julia hljs">tlmo.counter</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">25</code></pre><h2 id="Warm-starting-on-a-similar-problem"><a class="docs-heading-anchor" href="#Warm-starting-on-a-similar-problem">Warm-starting on a similar problem</a><a id="Warm-starting-on-a-similar-problem-1"></a><a class="docs-heading-anchor-permalink" href="#Warm-starting-on-a-similar-problem" title="Permalink"></a></h2><p>We change the point projected to the polytope at every iteration to a different one and reuse the active set of the previous iteration.</p><pre><code class="language-julia hljs">for iter in 1:10
     center = 5.0 .+ 3 * rand(n)
     f_i(x) = 0.5 * norm(x .- center)^2
@@ -127,20 +127,20 @@ GRADIENTTYPE: Nothing LAZY: true lazy_tolerance: 2.0
   Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec     #ActiveSet
 ----------------------------------------------------------------------------------------------------------------
      I             1   2.119458e+03   2.098970e+03   2.048800e+01   0.000000e+00            Inf              2
-    LD             3   2.117360e+03   2.109308e+03   8.052307e+00   5.068990e-04   5.918339e+03              3
-    LD             8   2.115053e+03   2.111212e+03   3.841888e+00   6.956980e-04   1.149924e+04              5
-    LD            14   2.114242e+03   2.112608e+03   1.633740e+00   8.655980e-04   1.617379e+04              9
-    LD            22   2.114026e+03   2.113705e+03   3.213494e-01   1.037197e-03   2.121101e+04             13
-    LD            30   2.114013e+03   2.113962e+03   5.132361e-02   1.202697e-03   2.494394e+04             13
-    LD            38   2.114013e+03   2.114004e+03   9.193385e-03   1.367797e-03   2.778190e+04             13
-    LD            47   2.114013e+03   2.114011e+03   1.405082e-03   1.534196e-03   3.063494e+04             13
-    LD            56   2.114013e+03   2.114013e+03   2.996493e-04   1.699096e-03   3.295870e+04             13
-    LD            63   2.114013e+03   2.114013e+03   4.428244e-05   1.860495e-03   3.386196e+04             13
-    LD            73   2.114013e+03   2.114013e+03   5.738928e-06   2.027595e-03   3.600325e+04             13
-  Last            73   2.114013e+03   2.114013e+03   5.738928e-06   2.181294e-03   3.346637e+04             13
+    LD             3   2.117360e+03   2.109308e+03   8.052307e+00   5.569110e-04   5.386857e+03              3
+    LD             8   2.115053e+03   2.111212e+03   3.841888e+00   7.470150e-04   1.070929e+04              5
+    LD            14   2.114242e+03   2.112608e+03   1.633740e+00   9.447190e-04   1.481922e+04              9
+    LD            22   2.114026e+03   2.113705e+03   3.213494e-01   1.131622e-03   1.944112e+04             13
+    LD            30   2.114013e+03   2.113962e+03   5.132361e-02   1.303926e-03   2.300744e+04             13
+    LD            38   2.114013e+03   2.114004e+03   9.193385e-03   1.478029e-03   2.570992e+04             13
+    LD            47   2.114013e+03   2.114011e+03   1.405082e-03   1.658533e-03   2.833830e+04             13
+    LD            56   2.114013e+03   2.114013e+03   2.996493e-04   1.836736e-03   3.048887e+04             13
+    LD            63   2.114013e+03   2.114013e+03   4.428244e-05   2.005340e-03   3.141612e+04             13
+    LD            73   2.114013e+03   2.114013e+03   5.738928e-06   2.191943e-03   3.330379e+04             13
+  Last            73   2.114013e+03   2.114013e+03   5.738928e-06   2.347146e-03   3.110160e+04             13
 ----------------------------------------------------------------------------------------------------------------
 
-    PP            73   2.114013e+03   2.114013e+03   5.738928e-06   2.354794e-03   3.100059e+04             13
+    PP            73   2.114013e+03   2.114013e+03   5.738928e-06   2.521650e-03   2.894930e+04             13
 ----------------------------------------------------------------------------------------------------------------
 
 [ Info: Number of LMO calls in iter 1: 28
@@ -162,4 +162,4 @@ GRADIENTTYPE: Nothing LAZY: true lazy_tolerance: 2.0
 [ Info: Number of LMO calls in iter 9: 10
 [ Info: Vertex storage size: 83
 [ Info: Number of LMO calls in iter 10: 13
-[ Info: Vertex storage size: 83</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_8_callback_and_tracking/">« Tracking, counters and custom callbacks for Frank Wolfe</a><a class="docs-footer-nextpage" href="../../reference/1_lmo/">Linear Minimization Oracles »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Saturday 25 June 2022 22:32">Saturday 25 June 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+[ Info: Vertex storage size: 83</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_8_callback_and_tracking/">« Tracking, counters and custom callbacks for Frank Wolfe</a><a class="docs-footer-nextpage" href="../../reference/1_lmo/">Linear Minimization Oracles »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Sunday 26 June 2022 08:30">Sunday 26 June 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
