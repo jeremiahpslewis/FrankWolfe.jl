@@ -14,8 +14,8 @@ const entry_values = randn(length(entry_indices))
 function f(X)
     r = zero(eltype(X))
     for (idx, (i, j)) in enumerate(entry_indices)
-        r += 1/2 * (X[i,j] - entry_values[idx])^2
-        r += 1/2 * (X[j,i] - entry_values[idx])^2
+        r += 1 / 2 * (X[i, j] - entry_values[idx])^2
+        r += 1 / 2 * (X[j, i] - entry_values[idx])^2
     end
     return r / length(entry_values)
 end
@@ -23,14 +23,29 @@ end
 function grad!(storage, X)
     storage .= 0
     for (idx, (i, j)) in enumerate(entry_indices)
-        storage[i,j] += (X[i,j] - entry_values[idx])
-        storage[j,i] += (X[j,i] - entry_values[idx])
+        storage[i, j] += (X[i, j] - entry_values[idx])
+        storage[j, i] += (X[j, i] - entry_values[idx])
     end
-    storage ./= length(entry_values)
-end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">grad! (generic function with 1 method)</code></pre><p>Note that the <code>ensure_symmetry = false</code> argument to <code>SpectraplexLMO</code>. It skips an additional step making the used direction symmetric. It is not necessary when the gradient is a <code>LinearAlgebra.Symmetric</code> (or more rarely a <code>LinearAlgebra.Diagonal</code> or <code>LinearAlgebra.UniformScaling</code>).</p><pre><code class="language-julia hljs">const lmo = FrankWolfe.SpectraplexLMO(1.0, n, false)
+    return storage ./= length(entry_values)
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">grad! (generic function with 1 method)</code></pre><p>Note that the <code>ensure_symmetry = false</code> argument to <code>SpectraplexLMO</code>. It skips an additional step making the used direction symmetric. It is not necessary when the gradient is a <code>LinearAlgebra.Symmetric</code> (or more rarely a <code>LinearAlgebra.Diagonal</code> or <code>LinearAlgebra.UniformScaling</code>).</p><pre><code class="language- hljs">const lmo = FrankWolfe.SpectraplexLMO(1.0, n, false)
 const x0 = FrankWolfe.compute_extreme_point(lmo, spzeros(n, n))
 
-target_tolerance = 1e-8;</code></pre><h2 id="Running-standard-and-lazified-Frank-Wolfe"><a class="docs-heading-anchor" href="#Running-standard-and-lazified-Frank-Wolfe">Running standard and lazified Frank-Wolfe</a><a id="Running-standard-and-lazified-Frank-Wolfe-1"></a><a class="docs-heading-anchor-permalink" href="#Running-standard-and-lazified-Frank-Wolfe" title="Permalink"></a></h2><pre><code class="language-julia hljs">Xfinal, Vfinal, primal, dual_gap, trajectory = FrankWolfe.frank_wolfe(
+target_tolerance = 1e-8;
+
+FrankWolfe.frank_wolfe(
+    f,
+    grad!,
+    lmo,
+    x0,
+    max_iteration=2,
+    line_search=FrankWolfe.MonotonousStepSize(),
+FrankWolfe.lazified_conditional_gradient(
+    f,
+    grad!,
+    lmo,
+    x0,
+    max_iteration=2,
+    line_search=FrankWolfe.MonotonousStepSize(),</code></pre><h2 id="Running-standard-and-lazified-Frank-Wolfe"><a class="docs-heading-anchor" href="#Running-standard-and-lazified-Frank-Wolfe">Running standard and lazified Frank-Wolfe</a><a id="Running-standard-and-lazified-Frank-Wolfe-1"></a><a class="docs-heading-anchor-permalink" href="#Running-standard-and-lazified-Frank-Wolfe" title="Permalink"></a></h2><pre><code class="language-julia hljs">Xfinal, Vfinal, primal, dual_gap, trajectory = FrankWolfe.frank_wolfe(
     f,
     grad!,
     lmo,
@@ -66,7 +81,7 @@ MOMENTUM: nothing GRADIENTTYPE: Nothing
   Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec
 -------------------------------------------------------------------------------------------------
      I             1   1.018611e+00   1.014120e+00   4.491135e-03   0.000000e+00            Inf
-  Last            26   1.014314e+00   1.014314e+00   8.583471e-09   1.700579e+00   1.528891e+01
+  Last            26   1.014314e+00   1.014314e+00   8.583471e-09   2.170316e+00   1.197982e+01
 -------------------------------------------------------------------------------------------------
 
 
@@ -79,15 +94,15 @@ GRADIENTTYPE: Nothing CACHESIZE Inf GREEDYCACHE: false
   Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec     Cache Size
 ----------------------------------------------------------------------------------------------------------------
      I             1   1.018611e+00   1.014120e+00   4.491135e-03   0.000000e+00            Inf              1
-    LD             2   1.014317e+00   1.014314e+00   3.663024e-06   9.597127e-01   2.083957e+00              2
-    LD             3   1.014315e+00   1.014314e+00   1.035459e-06   1.017573e+00   2.948191e+00              3
-    LD             4   1.014315e+00   1.014314e+00   5.082136e-07   1.075293e+00   3.719918e+00              4
-    LD             6   1.014314e+00   1.014314e+00   2.016058e-07   1.153412e+00   5.201958e+00              5
-    LD             9   1.014314e+00   1.014314e+00   8.381264e-08   1.251038e+00   7.194026e+00              6
-    LD            13   1.014314e+00   1.014314e+00   3.865760e-08   1.369370e+00   9.493420e+00              7
-    LD            19   1.014314e+00   1.014314e+00   1.762908e-08   1.531194e+00   1.240862e+01              8
-    LD            27   1.014314e+00   1.014314e+00   8.587827e-09   1.738745e+00   1.552845e+01              9
-  Last            27   1.014314e+00   1.014314e+00   7.974373e-09   1.858132e+00   1.453072e+01             10
+    LD             2   1.014317e+00   1.014314e+00   3.663024e-06   9.726788e-01   2.056177e+00              2
+    LD             3   1.014315e+00   1.014314e+00   1.035459e-06   1.046744e+00   2.866029e+00              3
+    LD             4   1.014315e+00   1.014314e+00   5.082136e-07   1.122570e+00   3.563253e+00              4
+    LD             6   1.014314e+00   1.014314e+00   2.016058e-07   1.223252e+00   4.904958e+00              5
+    LD             9   1.014314e+00   1.014314e+00   8.381264e-08   1.345623e+00   6.688353e+00              6
+    LD            13   1.014314e+00   1.014314e+00   3.865760e-08   1.497314e+00   8.682214e+00              7
+    LD            19   1.014314e+00   1.014314e+00   1.762908e-08   1.699154e+00   1.118204e+01              8
+    LD            27   1.014314e+00   1.014314e+00   8.587827e-09   1.960298e+00   1.377342e+01              9
+  Last            27   1.014314e+00   1.014314e+00   7.974373e-09   2.110412e+00   1.279371e+01             10
 ----------------------------------------------------------------------------------------------------------------</code></pre><h2 id="Plotting-the-resulting-trajectories"><a class="docs-heading-anchor" href="#Plotting-the-resulting-trajectories">Plotting the resulting trajectories</a><a id="Plotting-the-resulting-trajectories-1"></a><a class="docs-heading-anchor-permalink" href="#Plotting-the-resulting-trajectories" title="Permalink"></a></h2><pre><code class="language- hljs">data = [trajectory, trajectory_lazy]
 label = [&quot;FW&quot;, &quot;LCG&quot;]
-plot_trajectories(data, label, xscalelog=true)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_5_blended_cg/">« Blended Conditional Gradients</a><a class="docs-footer-nextpage" href="../docs_7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Monday 4 July 2022 12:30">Monday 4 July 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+plot_trajectories(data, label, xscalelog=true)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_5_blended_cg/">« Blended Conditional Gradients</a><a class="docs-footer-nextpage" href="../docs_7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Monday 4 July 2022 12:48">Monday 4 July 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

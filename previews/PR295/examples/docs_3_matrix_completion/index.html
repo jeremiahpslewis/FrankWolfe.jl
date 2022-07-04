@@ -143,7 +143,18 @@ for _ in 1:k
     @info f_val
     grad!(gradient, xgd)
     xgd_new, vertex = project_nuclear_norm_ball(xgd - gradient / L_estimate, radius=norm_estimation)
-    gamma = FrankWolfe.perform_line_search(ls, 1, f, grad!, gradient, xgd, xgd - xgd_new, 1.0, ls_storage, FrankWolfe.InplaceEmphasis())
+    gamma = FrankWolfe.perform_line_search(
+        ls,
+        1,
+        f,
+        grad!,
+        gradient,
+        xgd,
+        xgd - xgd_new,
+        1.0,
+        ls_storage,
+        FrankWolfe.InplaceEmphasis(),
+    )
     @. xgd -= gamma * (xgd - xgd_new)
 end
 
@@ -202,17 +213,19 @@ xlazy, _, _, _, _ = FrankWolfe.lazified_conditional_gradient(
 fw_test_values = getindex.(trajectory_arr_fw, 6)
 lazy_test_values = getindex.(trajectory_arr_lazy, 6)
 
-results = Dict(&quot;svals_gd&quot;=&gt;svdvals(xgd),
-&quot;svals_fw&quot;=&gt;svdvals(xfin),
-&quot;svals_lcg&quot;=&gt;svdvals(xlazy),
-&quot;fw_test_values&quot;=&gt;fw_test_values,
-&quot;lazy_test_values&quot;=&gt;lazy_test_values,
-&quot;trajectory_arr_fw&quot;=&gt;trajectory_arr_fw,
-&quot;trajectory_arr_lazy&quot;=&gt;trajectory_arr_lazy,
-&quot;function_values_gd&quot;=&gt;function_values,
-&quot;function_values_test_gd&quot;=&gt;function_test_values,
-&quot;timing_values_gd&quot;=&gt;timing_values,
-&quot;trajectory_arr_lazy_ref&quot;=&gt;trajectory_arr_lazy_ref)
+results = Dict(
+    &quot;svals_gd&quot; =&gt; svdvals(xgd),
+    &quot;svals_fw&quot; =&gt; svdvals(xfin),
+    &quot;svals_lcg&quot; =&gt; svdvals(xlazy),
+    &quot;fw_test_values&quot; =&gt; fw_test_values,
+    &quot;lazy_test_values&quot; =&gt; lazy_test_values,
+    &quot;trajectory_arr_fw&quot; =&gt; trajectory_arr_fw,
+    &quot;trajectory_arr_lazy&quot; =&gt; trajectory_arr_lazy,
+    &quot;function_values_gd&quot; =&gt; function_values,
+    &quot;function_values_test_gd&quot; =&gt; function_test_values,
+    &quot;timing_values_gd&quot; =&gt; timing_values,
+    &quot;trajectory_arr_lazy_ref&quot; =&gt; trajectory_arr_lazy_ref,
+)
 
 ref_optimum = results[&quot;trajectory_arr_lazy_ref&quot;][end][2]
 
@@ -248,5 +261,5 @@ plot_results(
         L&quot;\textrm{Test Error}&quot;,
     ],
     xscalelog=[:log, :identity, :log, :identity],
-    legend_position=[:bottomleft, nothing, nothing, nothing]
-)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_2_polynomial_regression/">« Polynomial Regression</a><a class="docs-footer-nextpage" href="../docs_4_rational_opt/">Exact Optimization with Rational Arithmetic »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Monday 4 July 2022 12:30">Monday 4 July 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+    legend_position=[:bottomleft, nothing, nothing, nothing],
+)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_2_polynomial_regression/">« Polynomial Regression</a><a class="docs-footer-nextpage" href="../docs_4_rational_opt/">Exact Optimization with Rational Arithmetic »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Monday 4 July 2022 12:48">Monday 4 July 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
