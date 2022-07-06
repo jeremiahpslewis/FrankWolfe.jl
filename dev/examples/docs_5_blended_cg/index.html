@@ -16,7 +16,7 @@ f(x) = dot(linear, x) + 0.5 * transpose(x) * hessian * x
 function grad!(storage, x)
     return storage .= linear + hessian * x
 end
-L = eigmax(hessian)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">250643.6986766641</code></pre><p>We run over the probability simplex and call the LMO to get an initial feasible point:</p><pre><code class="language- hljs">lmo = FrankWolfe.ProbabilitySimplexOracle(1.0);
+L = eigmax(hessian)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">250643.69867666412</code></pre><p>We run over the probability simplex and call the LMO to get an initial feasible point:</p><pre><code class="language- hljs">lmo = FrankWolfe.ProbabilitySimplexOracle(1.0);
 x00 = FrankWolfe.compute_extreme_point(lmo, zeros(n))
 
 target_tolerance = 1e-5
