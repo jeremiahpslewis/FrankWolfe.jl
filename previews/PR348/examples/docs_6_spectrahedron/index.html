@@ -81,7 +81,7 @@ MOMENTUM: nothing GRADIENTTYPE: Nothing
   Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec
 -------------------------------------------------------------------------------------------------
      I             1   1.018611e+00   1.014120e+00   4.491135e-03   0.000000e+00            Inf
-  Last            26   1.014314e+00   1.014314e+00   8.583471e-09   2.343594e+00   1.109407e+01
+  Last            26   1.014314e+00   1.014314e+00   8.583471e-09   1.795402e+00   1.448144e+01
 -------------------------------------------------------------------------------------------------
 
 Lazified Conditional Gradient (Frank-Wolfe + Lazification).
@@ -93,15 +93,15 @@ GRADIENTTYPE: Nothing CACHESIZE Inf GREEDYCACHE: false
   Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec     Cache Size
 ----------------------------------------------------------------------------------------------------------------
      I             1   1.018611e+00   1.014120e+00   4.491135e-03   0.000000e+00            Inf              1
-    LD             2   1.014317e+00   1.014314e+00   3.663024e-06   1.041267e+00   1.920737e+00              2
-    LD             3   1.014315e+00   1.014314e+00   1.035459e-06   1.113102e+00   2.695170e+00              3
-    LD             4   1.014315e+00   1.014314e+00   5.082136e-07   1.185844e+00   3.373126e+00              4
-    LD             6   1.014314e+00   1.014314e+00   2.016058e-07   1.284476e+00   4.671166e+00              5
-    LD             9   1.014314e+00   1.014314e+00   8.381264e-08   1.411147e+00   6.377791e+00              6
-    LD            13   1.014314e+00   1.014314e+00   3.865760e-08   1.566736e+00   8.297506e+00              7
-    LD            19   1.014314e+00   1.014314e+00   1.762908e-08   1.782026e+00   1.066202e+01              8
-    LD            27   1.014314e+00   1.014314e+00   8.587827e-09   2.069489e+00   1.304670e+01              9
-  Last            27   1.014314e+00   1.014314e+00   7.974373e-09   2.223719e+00   1.214182e+01             10
+    LD             2   1.014317e+00   1.014314e+00   3.663024e-06   8.112690e-01   2.465274e+00              2
+    LD             3   1.014315e+00   1.014314e+00   1.035459e-06   8.730444e-01   3.436251e+00              3
+    LD             4   1.014315e+00   1.014314e+00   5.082136e-07   9.361314e-01   4.272905e+00              4
+    LD             6   1.014314e+00   1.014314e+00   2.016058e-07   1.018897e+00   5.888719e+00              5
+    LD             9   1.014314e+00   1.014314e+00   8.381264e-08   1.126517e+00   7.989227e+00              6
+    LD            13   1.014314e+00   1.014314e+00   3.865760e-08   1.257017e+00   1.034194e+01              7
+    LD            19   1.014314e+00   1.014314e+00   1.762908e-08   1.434577e+00   1.324432e+01              8
+    LD            27   1.014314e+00   1.014314e+00   8.587827e-09   1.661524e+00   1.625014e+01              9
+  Last            27   1.014314e+00   1.014314e+00   7.974373e-09   1.786662e+00   1.511198e+01             10
 ----------------------------------------------------------------------------------------------------------------</code></pre><h2 id="Plotting-the-resulting-trajectories"><a class="docs-heading-anchor" href="#Plotting-the-resulting-trajectories">Plotting the resulting trajectories</a><a id="Plotting-the-resulting-trajectories-1"></a><a class="docs-heading-anchor-permalink" href="#Plotting-the-resulting-trajectories" title="Permalink"></a></h2><pre><code class="language- hljs">data = [trajectory, trajectory_lazy]
 label = [&quot;FW&quot;, &quot;LCG&quot;]
-plot_trajectories(data, label, xscalelog=true)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_5_blended_cg/">« Blended Conditional Gradients</a><a class="docs-footer-nextpage" href="../docs_7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.20 on <span class="colophon-date" title="Monday 11 July 2022 13:44">Monday 11 July 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+plot_trajectories(data, label, xscalelog=true)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_5_blended_cg/">« Blended Conditional Gradients</a><a class="docs-footer-nextpage" href="../docs_7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.20 on <span class="colophon-date" title="Monday 11 July 2022 15:25">Monday 11 July 2022</span>. Using Julia version 1.6.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
