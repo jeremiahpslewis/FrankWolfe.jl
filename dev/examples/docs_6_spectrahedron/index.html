@@ -80,8 +80,8 @@ MOMENTUM: nothing GRADIENTTYPE: Nothing
 -------------------------------------------------------------------------------------------------
   Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec
 -------------------------------------------------------------------------------------------------
-     I             1   1.018651e+00   1.014119e+00   4.531396e-03   0.000000e+00            Inf
-  Last            26   1.014314e+00   1.014314e+00   8.598814e-09   1.773016e+00   1.466428e+01
+     I             1   1.018593e+00   1.014119e+00   4.473979e-03   0.000000e+00            Inf
+  Last            26   1.014314e+00   1.014314e+00   8.584077e-09   1.940550e+00   1.339826e+01
 -------------------------------------------------------------------------------------------------
 
 Lazified Conditional Gradient (Frank-Wolfe + Lazification).
@@ -92,16 +92,16 @@ GRADIENTTYPE: Nothing CACHESIZE Inf GREEDYCACHE: false
 ----------------------------------------------------------------------------------------------------------------
   Type     Iteration         Primal           Dual       Dual Gap           Time         It/sec     Cache Size
 ----------------------------------------------------------------------------------------------------------------
-     I             1   1.018651e+00   1.014119e+00   4.531396e-03   0.000000e+00            Inf              1
-    LD             2   1.014317e+00   1.014314e+00   3.679257e-06   7.918383e-01   2.525768e+00              2
-    LD             3   1.014315e+00   1.014314e+00   1.036964e-06   8.534918e-01   3.514972e+00              3
-    LD             4   1.014315e+00   1.014314e+00   5.090329e-07   9.148274e-01   4.372409e+00              4
-    LD             6   1.014314e+00   1.014314e+00   2.019539e-07   9.970434e-01   6.017792e+00              5
-    LD             9   1.014314e+00   1.014314e+00   8.396068e-08   1.102127e+00   8.166027e+00              6
-    LD            13   1.014314e+00   1.014314e+00   3.872634e-08   1.230196e+00   1.056742e+01              7
-    LD            19   1.014314e+00   1.014314e+00   1.766051e-08   1.407682e+00   1.349737e+01              8
-    LD            27   1.014314e+00   1.014314e+00   8.603148e-09   1.634728e+00   1.651651e+01              9
-  Last            27   1.014314e+00   1.014314e+00   7.988600e-09   1.757470e+00   1.536299e+01             10
+     I             1   1.018593e+00   1.014119e+00   4.473979e-03   0.000000e+00            Inf              1
+    LD             2   1.014317e+00   1.014314e+00   3.667000e-06   9.348947e-01   2.139278e+00              2
+    LD             3   1.014315e+00   1.014314e+00   1.035402e-06   1.002571e+00   2.992308e+00              3
+    LD             4   1.014315e+00   1.014314e+00   5.082152e-07   1.071439e+00   3.733298e+00              4
+    LD             6   1.014314e+00   1.014314e+00   2.016152e-07   1.163613e+00   5.156355e+00              5
+    LD             9   1.014314e+00   1.014314e+00   8.381786e-08   1.281608e+00   7.022429e+00              6
+    LD            13   1.014314e+00   1.014314e+00   3.866020e-08   1.426955e+00   9.110307e+00              7
+    LD            19   1.014314e+00   1.014314e+00   1.763030e-08   1.623025e+00   1.170653e+01              8
+    LD            27   1.014314e+00   1.014314e+00   8.588424e-09   1.876894e+00   1.438547e+01              9
+  Last            27   1.014314e+00   1.014314e+00   7.974928e-09   2.012411e+00   1.341674e+01             10
 ----------------------------------------------------------------------------------------------------------------</code></pre><h2 id="Plotting-the-resulting-trajectories"><a class="docs-heading-anchor" href="#Plotting-the-resulting-trajectories">Plotting the resulting trajectories</a><a id="Plotting-the-resulting-trajectories-1"></a><a class="docs-heading-anchor-permalink" href="#Plotting-the-resulting-trajectories" title="Permalink"></a></h2><pre><code class="language- hljs">data = [trajectory, trajectory_lazy]
 label = [&quot;FW&quot;, &quot;LCG&quot;]
-plot_trajectories(data, label, xscalelog=true)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_5_blended_cg/">« Blended Conditional Gradients</a><a class="docs-footer-nextpage" href="../docs_7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.23 on <span class="colophon-date" title="Tuesday 30 August 2022 17:55">Tuesday 30 August 2022</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+plot_trajectories(data, label, xscalelog=true)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_5_blended_cg/">« Blended Conditional Gradients</a><a class="docs-footer-nextpage" href="../docs_7_shifted_norm_polytopes/">FrankWolfe for scaled, shifted <span>$\ell^1$</span> and <span>$\ell^{\infty}$</span> norm balls »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.23 on <span class="colophon-date" title="Tuesday 30 August 2022 17:59">Tuesday 30 August 2022</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
