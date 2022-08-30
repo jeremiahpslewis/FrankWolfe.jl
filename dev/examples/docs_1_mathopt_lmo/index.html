@@ -67,7 +67,7 @@ x, v, primal, dual_gap, trajectory_moi = FrankWolfe.frank_wolfe(
     memory_mode=FrankWolfe.InplaceEmphasis(),
     verbose=false,
     trajectory=true,
-);</code></pre><p>Alternatively, we can use one of the modelling interfaces based on <code>MOI</code> to formulate the LP. The following example builds the same set of constraints using <code>JuMP</code>:</p><pre><code class="language- hljs">m = JuMP.Model(GLPK.Optimizer)
+);</code></pre><p>Alternatively, we can use one of the modelling interfaces based on <code>MOI</code> to formulate the LP. The following example builds the same set of constraints using <code>JuMP</code>:</p><pre><code class="language-julia hljs">m = JuMP.Model(GLPK.Optimizer)
 @variable(m, y[1:n] ≥ 0)
 
 @constraint(m, sum(y) == lmo_radius)
@@ -111,10 +111,7 @@ x, v, primal, dual_gap, trajectory_jump_blas = FrankWolfe.frank_wolfe(
     memory_mode=FrankWolfe.OutplaceEmphasis(),
     verbose=false,
     trajectory=true,
-);
-
-
-iteration_list = [[x[1] + 1 for x in trajectory_lmo], [x[1] + 1 for x in trajectory_moi]]
+);</code></pre><p>We can now plot the results</p><pre><code class="language- hljs">iteration_list = [[x[1] + 1 for x in trajectory_lmo], [x[1] + 1 for x in trajectory_moi]]
 time_list = [[x[5] for x in trajectory_lmo], [x[5] for x in trajectory_moi]]
 primal_gap_list = [[x[2] for x in trajectory_lmo], [x[2] for x in trajectory_moi]]
 dual_gap_list = [[x[4] for x in trajectory_lmo], [x[4] for x in trajectory_moi]]
@@ -130,4 +127,4 @@ plot_results(
     xscalelog=[:log, :identity, :log, :identity],
     yscalelog=[:log, :log, :log, :log],
     legend_position=[:bottomleft, nothing, nothing, nothing],
-)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_0_fw_visualized/">« Visualization of Frank-Wolfe running on a 2-dimensional polytope</a><a class="docs-footer-nextpage" href="../docs_2_polynomial_regression/">Polynomial Regression »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.22 on <span class="colophon-date" title="Friday 12 August 2022 16:02">Friday 12 August 2022</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../docs_0_fw_visualized/">« Visualization of Frank-Wolfe running on a 2-dimensional polytope</a><a class="docs-footer-nextpage" href="../docs_2_polynomial_regression/">Polynomial Regression »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.23 on <span class="colophon-date" title="Tuesday 30 August 2022 17:55">Tuesday 30 August 2022</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
