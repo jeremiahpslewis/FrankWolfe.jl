@@ -247,16 +247,15 @@ function away_frank_wolfe(
                 if callback(state, active_set) === false
                     break
                 end
-            end    
-            # cleanup and renormalize every x iterations. Only for the fw steps.
-            renorm = mod(t, renorm_interval) == 0
-            if away_step_taken
-                active_set_update!(active_set, -gamma, vertex, true, index)
-            else
-                active_set_update!(active_set, gamma, vertex, renorm, index)
             end
+            # cleanup and renormalize if the away step is taken
+            active_set_update!(active_set, -gamma, vertex, away_step_taken, index)
         end
-
+        # cleanup and renormalize every x iterations
+        if renorm = mod(t, renorm_interval) == 0
+            active_set_cleanup!(active_set, update=false)
+            active_set_renormalize!(active_set)
+        end
         if (
             (mod(t, print_iter) == 0 && verbose) ||
             callback !== nothing ||

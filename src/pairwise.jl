@@ -337,8 +337,7 @@ function blended_pairwise_conditional_gradient(
                     end
                     active_set_initialize!(active_set, v)
                 else
-                    renorm = mod(t, renorm_interval) == 0
-                    active_set_update!(active_set, gamma, v, renorm, nothing)
+                    active_set_update!(active_set, gamma, v, false, nothing)
                 end
             else # dual step
                 # set to computed dual_gap for consistency between the lazy and non-lazy run.
@@ -379,6 +378,10 @@ function blended_pairwise_conditional_gradient(
                     end
                 end
             end
+        end
+        if mod(t, renorm_interval) == 0
+            active_set_cleanup!(active_set, update=false)
+            active_set_renormalize!(active_set)
         end
         if (
             ((mod(t, print_iter) == 0 || tt == dualstep) == 0 && verbose) ||
